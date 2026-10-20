@@ -1,0 +1,19 @@
+{
+  "name": "reelforge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal movie conversion studio: make downloaded movies play on your TV. Runs locally.",
+  "scripts": {
+    "setup": "node -e \"process.platform==='win32'?require('child_process').execSync('powershell -ExecutionPolicy Bypass -File scripts/setup.ps1',{stdio:'inherit'}):require('child_process').execSync('./scripts/setup.sh',{stdio:'inherit'})\"",
+    "dev": "node scripts/dev.mjs",
+    "build": "npm --prefix frontend run build",
+    "start:web": "npm --prefix frontend run start",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "node -e \"require('child_process').execSync((process.platform==='win32'?'backend\\\\.venv\\\\Scripts\\\\python':'backend/.venv/bin/python')+' -m pytest backend/tests -q',{stdio:'inherit'})\"",
+    "test:frontend": "npm --prefix frontend test",
+    "lint": "npm --prefix frontend run lint"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}

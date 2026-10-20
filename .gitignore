@@ -1,0 +1,45 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local data: never commit databases, logs or media
+*.sqlite3
+*.sqlite3-*
+*.db
+*.log
+logs/
+data/
+uploads/
+*.mkv
+*.mp4
+*.mov
+*.avi
+*.m4v
+*.webm
+*.srt
+
+# Tool and editor files
+.DS_Store
+.vscode/
+.idea/
+.playwright-cli/

@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Dark is the default theme; light is opt-in via
+ * <html data-theme="light">. Components only use the semantic names below.
+ */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #07070b;
+  --bg-elevated: #0d0d13;
+  --surface: #121219;
+  --surface-hover: #181822;
+  --surface-sunken: #0a0a0f;
+  --glass: rgba(20, 20, 30, 0.62);
+  --border: rgba(255, 255, 255, 0.075);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --fg: #ededf3;
+  --fg-muted: #a1a1b3;
+  --fg-faint: #6e6e80;
+  --accent: #8b7bff;
+  --accent-strong: #7461ff;
+  --accent-fg: #ffffff;
+  --accent-soft: rgba(139, 123, 255, 0.14);
+  --accent-glow: rgba(116, 97, 255, 0.35);
+  --success: #3ccf91;
+  --success-soft: rgba(60, 207, 145, 0.13);
+  --warning: #f2b54a;
+  --warning-soft: rgba(242, 181, 74, 0.13);
+  --danger: #f25c63;
+  --danger-soft: rgba(242, 92, 99, 0.13);
+  --info: #5fb0ff;
+  --info-soft: rgba(95, 176, 255, 0.13);
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+  --ring: rgba(139, 123, 255, 0.65);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f6f9;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-hover: #f1f1f6;
+  --surface-sunken: #eeeef3;
+  --glass: rgba(255, 255, 255, 0.75);
+  --border: rgba(16, 16, 40, 0.09);
+  --border-strong: rgba(16, 16, 40, 0.17);
+  --fg: #15151d;
+  --fg-muted: #55556a;
+  --fg-faint: #85859a;
+  --accent: #5b47f0;
+  --accent-strong: #4a35e6;
+  --accent-fg: #ffffff;
+  --accent-soft: rgba(91, 71, 240, 0.1);
+  --accent-glow: rgba(91, 71, 240, 0.2);
+  --success: #138a5a;
+  --success-soft: rgba(19, 138, 90, 0.1);
+  --warning: #a8650a;
+  --warning-soft: rgba(196, 122, 14, 0.12);
+  --danger: #cf2f3a;
+  --danger-soft: rgba(207, 47, 58, 0.1);
+  --info: #1f6fc4;
+  --info-soft: rgba(31, 111, 196, 0.1);
+  --shadow: 0 1px 2px rgba(16, 16, 40, 0.05), 0 8px 24px -12px rgba(16, 16, 40, 0.18);
+  --ring: rgba(91, 71, 240, 0.55);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-sunken: var(--surface-sunken);
+  --color-glass: var(--glass);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-faint: var(--fg-faint);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --shadow-card: var(--shadow);
+  --radius-card: 16px;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* Soft cinematic light behind the workspace. */
+.backdrop-cinema {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, var(--accent-glow), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(95, 176, 255, 0.07), transparent 60%);
+}
+
+/* Subtle film-strip perforation used as a decorative edge. */
+.film-edge {
+  background-image: radial-gradient(circle, var(--border-strong) 1.5px, transparent 1.6px);
+  background-size: 14px 10px;
+  background-repeat: repeat-x;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes rf-shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: rf-shimmer 1.6s linear infinite;
+}
