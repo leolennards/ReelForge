@@ -10,10 +10,13 @@ Import → Analyse → Choose device → Optimise → Convert → Verify → Wat
 
 Everything runs on your own computer. Movies are never uploaded anywhere.
 
+![ReelForge recommending an audio-only fix for a movie with DTS 5.1 audio](docs/screenshots/recommendation.png)
+
 ---
 
 ## Contents
 
+- [Screenshots](#screenshots)
 - [How it works](#how-it-works)
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -27,6 +30,21 @@ Everything runs on your own computer. Movies are never uploaded anywhere.
 - [Features](#features)
 - [Known limitations](#known-limitations)
 - [Troubleshooting](#troubleshooting)
+
+---
+
+## Screenshots
+
+| | |
+| --- | --- |
+| ![Dashboard](docs/screenshots/dashboard.png) | ![FFprobe analysis of a movie](docs/screenshots/analyse.png) |
+| **Dashboard.** Import movies and see recent conversions at a glance. | **Analyse.** FFprobe reads the real container, codecs, resolution and tracks. |
+| ![Conversion queue with live progress](docs/screenshots/queue.png) | ![Verification and TV Ready Check](docs/screenshots/verify.png) |
+| **Queue.** Real FFmpeg progress, speed and time left, with cancel and retry. | **Verify.** The output is re-checked with FFprobe, then compared with the device profile. |
+| ![Conversion history](docs/screenshots/history.png) | ![Device profiles in the light theme](docs/screenshots/profiles-light.png) |
+| **History.** Every conversion is recorded locally, with sizes and timings. | **Device profiles.** Built-in presets plus your own, in dark or light theme. |
+
+<p align="center"><img src="docs/screenshots/mobile.png" alt="ReelForge on a phone-sized screen" width="300"></p>
 
 ---
 
