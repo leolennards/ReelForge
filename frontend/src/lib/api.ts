@@ -14,6 +14,7 @@ import type {
   Stats,
   SystemInfo,
 } from "./types";
+import { DEMO, DEMO_MESSAGE, demoRequest } from "./demo";
 
 export const API_URL = (process.env.NEXT_PUBLIC_REELFORGE_API_URL || "http://127.0.0.1:8765").replace(
   /\/$/,
@@ -51,6 +52,13 @@ function errorMessage(body: unknown, status: number): string {
 }
 
 export async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  if (DEMO) {
+    try {
+      return await demoRequest<T>(path, init);
+    } catch {
+      throw new ApiError(DEMO_MESSAGE, 403);
+    }
+  }
   let response: Response;
   try {
     response = await fetch(`${API_URL}${path}`, {
@@ -142,6 +150,7 @@ export interface UploadHandle {
  * file from disk as it sends, so large movies never sit in page memory.
  */
 export function uploadFile(file: File, onProgress: (fraction: number) => void): UploadHandle {
+  if (DEMO) return { promise: Promise.reject(new ApiError(DEMO_MESSAGE, 403)), abort: () => {} };
   const xhr = new XMLHttpRequest();
   const promise = new Promise<MediaItem>((resolve, reject) => {
     xhr.open("PUT", `${API_URL}/api/media/upload`);

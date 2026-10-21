@@ -10,6 +10,8 @@ Import → Analyse → Choose device → Optimise → Convert → Verify → Wat
 
 Everything runs on your own computer. Movies are never uploaded anywhere.
 
+**[Try the live demo →](https://reelforge-demo.vercel.app)** A read-only copy of the interface with sample movies, analysis and history recorded from a real run. Converting needs ReelForge running on your own computer.
+
 ![ReelForge recommending an audio-only fix for a movie with DTS 5.1 audio](docs/screenshots/recommendation.png)
 
 ---
@@ -208,6 +210,16 @@ The engine reads `REELFORGE_*` environment variables. `npm run dev` also loads t
 The web interface reads `NEXT_PUBLIC_REELFORGE_API_URL` from `frontend/.env.local` (default `http://127.0.0.1:8765`).
 
 Everyday preferences (theme, default profile, audio format, quality, concurrent jobs, retention) live in **Settings** and are stored in the local database.
+
+### Hosted demo
+
+The public demo is the normal web interface built with `NEXT_PUBLIC_REELFORGE_DEMO=1`. In that mode it never contacts an engine: it reads responses recorded from a real engine in `frontend/src/lib/demo-data.json` and refuses anything that would change state. To refresh the recording, run an engine with a few sample movies already converted, then:
+
+```bash
+node scripts/capture-demo.mjs http://127.0.0.1:8765 /path/to/hide
+```
+
+The second argument is replaced with `/Users/you` so no local paths are published.
 
 ## Security and privacy
 

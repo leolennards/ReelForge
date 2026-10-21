@@ -22,6 +22,7 @@ import { toast } from "sonner";
 
 import { api } from "@/lib/api";
 import { cn } from "@/lib/cn";
+import { DEMO, DEMO_MESSAGE } from "@/lib/demo";
 import { elapsedSince, formatBytes, formatDuration, relativeTime } from "@/lib/format";
 import { useNow } from "@/lib/hooks";
 import type { Job, JobStatus } from "@/lib/types";
@@ -78,14 +79,20 @@ export function JobOutputActions({ job, compact }: { job: Job; compact?: boolean
       >
         {compact ? "Show" : "Show in folder"}
       </Button>
-      <a
-        href={api.downloadUrl(job.id)}
-        download
-        className="inline-flex h-8 items-center gap-2 rounded-xl border border-line bg-surface px-3 text-[13px] font-medium hover:border-line-strong hover:bg-surface-hover"
-      >
-        <Download className="size-4" />
-        Download
-      </a>
+      {DEMO ? (
+        <Button size="sm" variant="secondary" icon={<Download className="size-4" />} onClick={() => toast(DEMO_MESSAGE)}>
+          Download
+        </Button>
+      ) : (
+        <a
+          href={api.downloadUrl(job.id)}
+          download
+          className="inline-flex h-8 items-center gap-2 rounded-xl border border-line bg-surface px-3 text-[13px] font-medium hover:border-line-strong hover:bg-surface-hover"
+        >
+          <Download className="size-4" />
+          Download
+        </a>
+      )}
     </>
   );
 }

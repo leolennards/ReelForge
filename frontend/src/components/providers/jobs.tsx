@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { mutate } from "swr";
 
 import { API_URL } from "@/lib/api";
+import { DEMO, demoJobs } from "@/lib/demo";
 import { omit } from "@/lib/storage";
 import type { Job } from "@/lib/types";
 
@@ -30,6 +31,18 @@ export function JobsProvider({ children }: { children: ReactNode }) {
   const previous = useRef<Record<string, Job>>({});
 
   useEffect(() => {
+    if (DEMO) {
+      // The demo has no engine to stream from; show the recorded jobs.
+      let cancelled = false;
+      demoJobs().then((jobs) => {
+        if (cancelled) return;
+        setById(Object.fromEntries(jobs.map((j) => [j.id, j])));
+        setConnection("live");
+      });
+      return () => {
+        cancelled = true;
+      };
+    }
     let source: EventSource | null = null;
     let retry: ReturnType<typeof setTimeout> | undefined;
     let attempt = 0;

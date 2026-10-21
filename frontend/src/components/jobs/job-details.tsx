@@ -4,6 +4,7 @@ import { CheckCircle2, XCircle } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { api } from "@/lib/api";
+import { DEMO } from "@/lib/demo";
 import { formatBytes, formatDuration } from "@/lib/format";
 import type { Job } from "@/lib/types";
 
@@ -93,7 +94,7 @@ export function JobDetailsDialog({
           </section>
         )}
 
-        {job.srt_available && (
+        {job.srt_available && !DEMO && (
           <a className="text-sm text-accent underline-offset-4 hover:underline" href={api.subtitlesUrl(job.id)} download>
             Download the separate .srt subtitle file
           </a>

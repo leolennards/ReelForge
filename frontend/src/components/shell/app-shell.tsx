@@ -24,6 +24,7 @@ import { useTheme } from "../providers/theme";
 import { Button, ButtonLink } from "../ui/button";
 import { Kbd } from "../ui/feedback";
 import { Dialog, Tooltip } from "../ui/overlays";
+import { DemoBanner } from "./demo-banner";
 import { Logo } from "./logo";
 import { NAV_ITEMS, titleFor } from "./nav";
 import { LocalBadge, SidebarStatus } from "./status";
@@ -263,6 +264,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </header>
 
         <main id="main" className="mx-auto w-full max-w-[1400px] flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+          <DemoBanner />
           <motion.div
             key={pathname}
             initial={{ opacity: 0, y: 6 }}

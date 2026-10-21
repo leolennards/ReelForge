@@ -20,9 +20,8 @@ export function EngineBanner() {
     return (
       <Callout tone="danger" title="The local engine isn't running">
         ReelForge&apos;s processing engine runs on this computer. Start it from the project folder with{" "}
-        <code className="rounded bg-sunken px-1.5 py-0.5 font-mono text-xs text-fg">npm run dev</code> (starts both
-        parts) or <code className="rounded bg-sunken px-1.5 py-0.5 font-mono text-xs text-fg">scripts/dev.sh</code>.
-        This page reconnects automatically.
+        <code className="rounded bg-sunken px-1.5 py-0.5 font-mono text-xs text-fg">npm run dev</code>, which starts
+        both parts. This page reconnects automatically.
       </Callout>
     );
   }
